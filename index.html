@@ -4,154 +4,116 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Interactive Box</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+
     <title>AVISO</title>
-      <!-- Adicione o favicon aqui -->
-      <link rel="icon" href="https://img.icons8.com/?size=100&id=49467&format=png&color=000000" type="image/png">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&amp;display=swap">
-      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-<style>
-  @import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&display=swap");    
+    
+    <style>
         * {
             margin: 0;
             padding: 0;
-            box-sizing: border-box !important;
-        }
-
-        html, body {
-            height: 100%;
+            box-sizing: border-box;
         }
 
         body {
-            display: table;
-            width: 100%;
-            height: 100%;
-            background-color: #171717; /* Cor de fundo do body */
-            color: #fff; /* Cor do texto para garantir contraste */
-            line-height: 1.6;
-            position: relative;
-            font-family: sans-serif;
-            overflow: hidden;
-            
-            background-size: cover; /* Faz com que a imagem cubra todo o plano de fundo */
-            background-position: center; /* Centraliza a imagem */
-            background-repeat: no-repeat; /* Não repete a imagem */
+            background-color: #111845;
+            font-family: Arial, sans-serif;
+            overflow-x: hidden;
+            min-height: 100vh;
         }
 
-        .lines {
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 100%;
-            margin: auto;
-            width: 90vw;
-        }
-
-        .line {
-            position: absolute;
-            width: 1px;
-            height: 100%;
-            top: 0;
-            left: 50%;
-            background: rgba(255, 255, 255, 0.1);
-            overflow: hidden;
-        }
-
-        .line::after {
-            content: '';
-            display: block;
-            position: absolute;
-            height: 15vh;
-            width: 100%;
-            top: -50%;
-            left: 0;
-            background: linear-gradient(to bottom, rgba(255, 255, 255, 0) 0%, #ffffff 75%, #ffffff 100%);
-            animation: drop 7s 0s infinite;
-            animation-fill-mode: forwards;
-            animation-timing-function: cubic-bezier(0.4, 0.26, 0, 0.97);
-        }
-
-        .line:nth-child(1) {
-            margin-left: -25%;
-        }
-
-        .line:nth-child(1)::after {
-            animation-delay: 2s;
-        }
-
-        .line:nth-child(3) {
-            margin-left: 25%;
-        }
-
-        .line:nth-child(3)::after {
-            animation-delay: 2.5s;
-        }
-
-        @keyframes drop {
-            0% {
-                top: -50%;
-            }
-            100% {
-                top: 110%;
-            }
-        }
-
-        /* Estilo para a carta */
-        .alert {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            width: 80vw; /* Aumenta a largura da carta */
-            max-width: 600px; /* Define uma largura máxima */
-            padding: 40px;
-            background-color: rgba(0, 0, 0, 0.39); /* Fundo escuro e semi-transparente */
-            border-radius: 10px;
-            text-align: center;
-            z-index: 1000; /* Garante que a carta fique acima do fundo e das linhas */
-        }
-
-        .alert img {
-            max-width: 100%;
-            height: auto; /* Mantém a proporção da imagem */
-        }
-
-        /* Estilo para o link do botão de fechar */
-        .close-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            width: 30px; /* Largura do ícone */
-            height: 30px; /* Altura do ícone */
-            background: transparent; /* Fundo transparente */
-            border: none;
-            cursor: pointer;
+        .container {
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 20px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .close-btn img {
-            width: 100%; /* Faz com que a imagem do ícone se ajuste ao tamanho do botão */
+        .background-img {
+            background-image: url('https://i.pinimg.com/originals/8c/12/68/8c12683bda373c85a792a08b97b1c2e7.jpg'); /* Substitua com o caminho da sua imagem */
+            background-size: cover;
+            background-position: center;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        .box {
+            background: rgba(17, 24, 69, 0.65);
+            padding: 20px;
+            box-shadow: none; /* Remove o efeito de sombra */
+            border: 2px solid #2a3cad;
+            color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            z-index: 1;
+            transition: width 0.3s ease;
+        }
+
+        .content img {
+            max-width: 100%;
             height: auto;
+            border-radius: 10px;
+            margin-bottom: 20px;
+        }
+
+        .content h1, .content p {
+            text-align: center;
+            margin-bottom: 10px;
+        }
+
+        /* Responsividade */
+        @media only screen and (min-width: 1080px) {
+            .box {
+                width: 40%; /* 40% da largura da tela no PC */
+                aspect-ratio: 1 / 1; /* Mantém proporção de um quadrado */
+            }
+        }
+
+        @media only screen and (max-width: 1080px) and (min-width: 768px) {
+            .box {
+                width: 50%; /* Ajusta para 50% da largura da tela em tablets */
+                aspect-ratio: 1 / 1;
+            }
+        }
+
+        @media only screen and (max-width: 768px) {
+            .box {
+                width: 80%; /* 80% da largura da tela em celulares */
+                aspect-ratio: 1 / 1; /* Mantém proporção */
+            }
+
+            .content h1 {
+                font-size: 1.5em;
+            }
+
+            .content p {
+                font-size: 1em;
+            }
         }
     </style>
 </head>
 <body>
-   <h1>ATENÇÃO!</h1>
-    <div class="lines">
-        <div class="line"></div>
-        <div class="line"></div>
-        <div class="line"></div>
-    </div>
-    <div class="alert">
-        <!-- Link do botão de fechar com ícone -->
-        <a href="https://luluxvpi.github.io/VMLivros/" class="close-btn">
-            <img src="https://img.icons8.com/?size=100&id=52994&format=png&color=000000" alt="Fechar">
-        </a>
-        <img src="https://i.pinimg.com/originals/2b/f0/52/2bf0528a144b538df9e7afe8ee89f290.png" alt="Aviso">
-        <h1>LEIA!</h1>
+    <div class="container">
+        <div class="background-img"></div>
+        <div class="box">
+            <div class="content">
+                <img src="https://i.pinimg.com/736x/56/bd/7f/56bd7f6bc2c84207f899301001a8588d.jpg" alt="Imagem de agradecimento">
+            </div>
+        </div>
     </div>
 </body>
 </html>
